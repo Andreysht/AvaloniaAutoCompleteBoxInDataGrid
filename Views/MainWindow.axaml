@@ -27,7 +27,6 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate DataType="vm:EntityViewModel">
 								<AutoCompleteBox
-                                    ValueMemberBinding="{Binding Name}"
                                     SelectedItem="{Binding Value}"
                                     Text="{Binding Value}">
 								</AutoCompleteBox>
