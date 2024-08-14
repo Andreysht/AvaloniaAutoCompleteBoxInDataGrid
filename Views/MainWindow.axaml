@@ -1,0 +1,43 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:AvaloniaAutoCompleteBoxInDataGrid.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="450" d:DesignHeight="450"
+		Width="450" Height="450"
+        x:Class="AvaloniaAutoCompleteBoxInDataGrid.Views.MainWindow"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="AvaloniaAutoCompleteBoxInDataGrid">
+
+    <SplitView IsPaneOpen="True"
+               DisplayMode="Inline"
+               OpenPaneLength="100">
+        <SplitView.Pane>
+            <StackPanel>
+                <CheckBox Name="KludgeCheckBox" Content="Kludge"></CheckBox>
+                <Button Content="Reset" Command="{Binding ResetCommand}"></Button>
+			</StackPanel>
+        </SplitView.Pane>
+
+            <DataGrid Margin="20" ItemsSource="{Binding Entities}"
+                      AutoGenerateColumns="True"
+                      UnloadingRow="DataGrid_OnUnloadingRow">
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate DataType="vm:EntityViewModel">
+								<AutoCompleteBox
+                                    ValueMemberBinding="{Binding Name}"
+                                    SelectedItem="{Binding Value}"
+                                    Text="{Binding Value}">
+								</AutoCompleteBox>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+
+    </SplitView>
+
+
+</Window>
